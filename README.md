@@ -2,5 +2,5 @@
 ## Creating a ChatGPT Clone with Gemini and Streamlit
 
 <div align="center">
-    <img src="output.png" alt="Logo" width="600" height="400">
+    <img src="output.png" alt="Logo" width="800" height="400">
 </div>
