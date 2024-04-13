@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import google.generativeai as genai
+
 st.title("Chat - Gemini Bot")
 # Set Google API key
 os.environ['GOOGLE_API_KEY'] = "Your Google API Key"
@@ -17,14 +18,12 @@ if "messages" not in st.session_state:
     ]
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    st.write(f"{message['role']}: {message['content']}")
 # Process and store Query and Response
 def llm_function(query):
     response = model.generate_content(query)
     # Displaying the Assistant Message
-    with st.chat_message("assistant"):
-        st.markdown(response.text)
+    st.write(f"assistant: {response.text}")
     # Storing the User Message
     st.session_state.messages.append(
         {
@@ -40,10 +39,7 @@ def llm_function(query):
         }
     )
 # Accept user input
-query = st.chat_input("What is up?")
+query = st.text_input("What is up?")
 # Calling the Function when Input is Provided
 if query:
-    # Displaying the User Message
-    with st.chat_message("user"):
-        st.markdown(query)
     llm_function(query)
